@@ -1,9 +1,10 @@
 const express = require('express');
+const MongoClient = require('mongodb').MongoClient;
 
 const password = 'yQgwjNcRYJiVdX5';
 
-const uri = "mongodb+srv://organicUser:yQgwjNcRYJiVdX5@cluster0.bzdnt.mongodb.net/<dbname>?retryWrites=true&w=majority";
-const client = new MongoClient(uri, { useNewUrlParser: true });
+const uri = "mongodb+srv://organicUser:yQgwjNcRYJiVdX5@cluster0.bzdnt.mongodb.net/organicdb?retryWrites=true&w=majority";
+const client = new MongoClient(uri, { useNewUrlParser: true,  useUnifiedTopology: true });
 
 const app = express();
 
@@ -12,11 +13,11 @@ app.get('/', (req, res) => {
 })
 
 
-const MongoClient = require('mongodb').MongoClient;
+
 
 client.connect(err => {
-  const collection = client.db("test").collection("devices");
-  // perform actions on the collection object
+  const collection = client.db("organicdb").collection("products");
+  console.log('databae connected')
   client.close();
 });
 
